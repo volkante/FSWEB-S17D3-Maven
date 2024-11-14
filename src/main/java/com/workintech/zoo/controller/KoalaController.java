@@ -32,6 +32,7 @@ public class KoalaController {
 
     @GetMapping("/{id}")
     public Koala getKoalaById(@PathVariable long id){
+
         if(id<=0){
             throw new ZooException("Id must be greater than 0", HttpStatus.BAD_REQUEST);
         }
@@ -43,6 +44,11 @@ public class KoalaController {
 
     @PostMapping()
     public Koala addKoala(@RequestBody Koala koala){
+        if(koala.getId() <= 0 || koala.getName() == null
+                || koala.getWeight() <= 0 || koala.getSleepHour() <= 0
+                || koala.getGender() == null){
+            throw new ZooException("Invalid koala data", HttpStatus.BAD_REQUEST);
+        }
         Koala koalaToBeAdded = new Koala(koala.getId(),koala.getName(),koala.getWeight(),koala.getSleepHour(),koala.getGender());
         koalas.put(koalaToBeAdded.getId(),koalaToBeAdded);
         return koalas.get(koalaToBeAdded.getId());

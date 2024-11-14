@@ -1,6 +1,7 @@
 package com.workintech.zoo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.workintech.zoo.entity.Gender;
 import com.workintech.zoo.entity.Kangaroo;
 import com.workintech.zoo.entity.Koala;
 import com.workintech.zoo.exceptions.ZooErrorResponse;
@@ -24,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@ExtendWith(ResultAnalyzer.class)
+@ExtendWith(com.workintech.s17d2.ResultAnalyzer.class)
 class MainTest {
 
 
@@ -44,8 +45,8 @@ class MainTest {
     @BeforeEach
     void setup() {
 
-        kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, "Male", false);
-        koala = new Koala(1, "Kara", 20.0, 15.0, "Female");
+        kangaroo = new Kangaroo(1, "Kenny", 2.0, 85.0, Gender.MALE, false);
+        koala = new Koala(1, "Kara", 20.0, 15.0,Gender.FEMALE);
 
     }
 
